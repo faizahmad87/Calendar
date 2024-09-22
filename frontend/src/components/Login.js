@@ -30,7 +30,9 @@ function Login() {
  return (
   <>
    <div className="header">
+    <div></div>
     <div>Login</div>
+    <div></div>
    </div>
    <div className="main-container" style={{alignItems: 'center'}}>
     {error && <p style={{color: 'red'}}>{error}</p>}

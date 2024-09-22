@@ -58,6 +58,13 @@ button {
  gap: 4px;
 }
 
+.eventByDate {
+ display: flex;
+ gap: 4px;
+ font-family: Lato;
+ font-size: 24px;
+ font-weight: 600;
+}
 .list-item {
  display: flex;
  flex-direction: column;
@@ -100,40 +107,42 @@ button {
   border-radius: 8px;
  }
 }
-// .calendar {
-//  display: flex;
-//  justify-content: space-between;
-//  gap: 56px;
-//  .react-calendar__month-view__weekdays__weekday {
-//   display: flex;
-//   align-items: center;
-//  }
-//  .react-calendar__tile--active {
-//   background-color: transparent !important;
-//   color: red !important; /* Change the text color of the selected date to red */
-//   font-weight: bold;
-//  }
-//  /* Additional selector for a selected date that is focused */
-//  .react-calendar__tile--active:focus,
-//  .react-calendar__tile--active:enabled:focus,
-//  .react-calendar__tile--active:enabled:hover {
-//   background-color: #f0f0f0 !important; /* Slight background change on focus or hover */
-//   color: red !important;
-//  }
-//  .react-calendar__navigation {
-//   display: flex;
-//   align-items: center;
-//  }
-//  button {
-//   background-color: #333333 !important;
-//   color: white !important;
-//   border: none;
-//   padding: 8px;
-//   border-radius: 12px;
-//   cursor: pointer;
-//  }
-//  button:hover {
-//   background-color: white !important;
-//   color: #333333 !important;
-//  }
-// }
+.calendar-list {
+ display: flex;
+ justify-content: space-between;
+ gap: 56px;
+}
+.calendar {
+ .react-calendar__month-view__weekdays__weekday {
+  display: flex;
+  align-items: center;
+ }
+ .react-calendar__tile--active {
+  background-color: transparent !important;
+  color: red !important; /* Change the text color of the selected date to red */
+  font-weight: bold;
+ }
+ /* Additional selector for a selected date that is focused */
+ .react-calendar__tile--active:focus,
+ .react-calendar__tile--active:enabled:focus,
+ .react-calendar__tile--active:enabled:hover {
+  background-color: #f0f0f0 !important; /* Slight background change on focus or hover */
+  color: red !important;
+ }
+ .react-calendar__navigation {
+  display: flex;
+  align-items: center;
+ }
+ button {
+  background-color: #333333 !important;
+  color: white !important;
+  border: none;
+  padding: 8px;
+  border-radius: 12px;
+  cursor: pointer;
+ }
+ button:hover {
+  background-color: white !important;
+  color: #333333 !important;
+ }
+}
