@@ -16,11 +16,11 @@ const User = sequelize.define('User', {
  password: {
   type: DataTypes.STRING,
   allowNull: false
- },
- firebaseUid: {
-  type: DataTypes.STRING,
-  allowNull: false
  }
+ //  firebaseUid: {
+ //   type: DataTypes.STRING,
+ //   allowNull: false
+ //  }
 });
 
 module.exports = User;

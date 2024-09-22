@@ -15,9 +15,11 @@ function Login() {
     email,
     password
    });
+   console.log(res.data);
 
    // Store the token and redirect to calendar
    localStorage.setItem('token', res.data.token);
+   localStorage.setItem('userID', res.data.user.id);
    navigate('/calendar');
   } catch (err) {
    console.error(err);
@@ -26,30 +28,38 @@ function Login() {
  };
 
  return (
-  <div>
-   <h2>Login</h2>
-   {error && <p style={{color: 'red'}}>{error}</p>}
-   <form onSubmit={handleLogin}>
-    <input
-     type="email"
-     value={email}
-     onChange={e => setEmail(e.target.value)}
-     placeholder="Email"
-     required
-    />
-    <input
-     type="password"
-     value={password}
-     onChange={e => setPassword(e.target.value)}
-     placeholder="Password"
-     required
-    />
-    <button type="submit">Login</button>
-   </form>
-   <p>
-    Don't have an account? <Link to="/register">Register here</Link>
-   </p>
-  </div>
+  <>
+   <div className="header">
+    <div>Login</div>
+   </div>
+   <div className="main-container" style={{alignItems: 'center'}}>
+    {error && <p style={{color: 'red'}}>{error}</p>}
+    <form onSubmit={handleLogin} className="input-container">
+     <input
+      type="email"
+      value={email}
+      onChange={e => setEmail(e.target.value)}
+      placeholder="Email"
+      required
+      className="input-element"
+     />
+     <input
+      type="password"
+      value={password}
+      onChange={e => setPassword(e.target.value)}
+      placeholder="Password"
+      required
+      className="input-element"
+     />
+     <button type="submit" style={{padding: '12px'}}>
+      Login
+     </button>
+    </form>
+    <p>
+     Don't have an account? <Link to="/register">Register here</Link>
+    </p>
+   </div>
+  </>
  );
 }
 

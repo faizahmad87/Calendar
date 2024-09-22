@@ -7,9 +7,10 @@ import {
 } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
-import Calendar from './components/Calendar';
+import CalendarEvent from './components/Calendar';
 import CreateEvent from './components/CreateEvent';
 import EditEvent from './components/EditEvent';
+import './global.scss'; // Import the global SCSS file
 
 function App() {
  const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -27,20 +28,17 @@ function App() {
  return (
   <Router>
    <Routes>
-    {isAuthenticated ? (
-     <>
-      <Route path="/calendar" element={<Calendar />} />
-     </>
-    ) : (
-     <>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/calendar" element={<Calendar />} />
-      <Route path="/create-event" element={<CreateEvent />} />
-      <Route path="/edit-event/:id" element={<EditEvent />} />
-      <Route path="/home" element={<Navigate to="/login" />} />
-     </>
-    )}
+    <Route
+     path="/"
+     element={
+      isAuthenticated ? <Navigate to="/calendar" /> : <Navigate to="/login" />
+     }
+    />
+    <Route path="/calendar" element={<CalendarEvent />} />
+    <Route path="/create-event" element={<CreateEvent />} />
+    <Route path="/edit-event/:id" element={<EditEvent />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/register" element={<Register />} />
    </Routes>
   </Router>
  );

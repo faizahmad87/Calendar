@@ -1,5 +1,5 @@
 const express = require('express');
-const {User} = require('../models/User'); // Assuming you have a User model in models/User.js
+const User = require('../models/User'); // Assuming you have a User model in models/User.js
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -22,7 +22,11 @@ router.post('/register', async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt);
 
   // Create a new user
-  user = await User.create({email, password: hashedPassword});
+  user = await User.create({
+   email,
+   password: hashedPassword
+   //firebaseUid // Store Firebase UID in the database
+  });
 
   // Generate a token
   const token = jwt.sign({id: user.id}, JWT_SECRET, {expiresIn: '1h'});

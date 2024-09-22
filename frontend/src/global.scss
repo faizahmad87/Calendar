@@ -1,0 +1,130 @@
+// src/global.scss
+
+body {
+ margin: 0;
+ padding: 0;
+ font-family: 'Arial', sans-serif;
+ background-color: #f5f5f5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ color: #333;
+}
+
+a {
+ text-decoration: none;
+ color: inherit;
+}
+
+button {
+ background-color: #b3005c;
+ color: white;
+ border: none;
+ padding: 12px;
+ border-radius: 5px;
+ cursor: pointer;
+}
+
+.header {
+ background-color: #333;
+ color: white;
+ padding: 16px;
+ text-align: center;
+ font-size: 24px;
+ display: flex;
+ justify-content: space-between;
+ div {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+ }
+}
+
+.main-container {
+ display: flex;
+ flex-direction: column;
+ padding: 16px;
+ font-family: Lato;
+}
+
+.list {
+ display: flex;
+ flex-direction: column;
+ gap: 4px;
+}
+
+.list-item {
+ position: relative;
+ padding-left: 30px; /* Space for the icon */
+ display: flex;
+ gap: 4px;
+ align-items: center;
+ font-size: 24px;
+ b {
+  text-transform: capitalize;
+ }
+}
+.list-item::before {
+ content: '\2022'; /* Unicode for bullet point */
+ font-size: 30px; /* Size of the icon */
+ color: #b3005c; /* Custom color for the bullet/icon */
+ //margin-right: 10px; /* Space between icon and text */
+ display: inline-block;
+}
+
+.input-container {
+ margin-top: 36px;
+ display: flex;
+ flex-direction: column;
+ width: 30%;
+ justify-self: center;
+ gap: 16px;
+ padding: 8px;
+ .input-element {
+  padding: 8px;
+  border: 2px solid #333;
+  border-radius: 8px;
+ }
+}
+// .calendar {
+//  display: flex;
+//  justify-content: space-between;
+//  gap: 56px;
+//  .react-calendar__month-view__weekdays__weekday {
+//   display: flex;
+//   align-items: center;
+//  }
+//  .react-calendar__tile--active {
+//   background-color: transparent !important;
+//   color: red !important; /* Change the text color of the selected date to red */
+//   font-weight: bold;
+//  }
+//  /* Additional selector for a selected date that is focused */
+//  .react-calendar__tile--active:focus,
+//  .react-calendar__tile--active:enabled:focus,
+//  .react-calendar__tile--active:enabled:hover {
+//   background-color: #f0f0f0 !important; /* Slight background change on focus or hover */
+//   color: red !important;
+//  }
+//  .react-calendar__navigation {
+//   display: flex;
+//   align-items: center;
+//  }
+//  button {
+//   background-color: #333333 !important;
+//   color: white !important;
+//   border: none;
+//   padding: 8px;
+//   border-radius: 12px;
+//   cursor: pointer;
+//  }
+//  button:hover {
+//   background-color: white !important;
+//   color: #333333 !important;
+//  }
+// }

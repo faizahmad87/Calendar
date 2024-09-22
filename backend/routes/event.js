@@ -1,5 +1,5 @@
 const express = require('express');
-const {Event} = require('../models/Event');
+const Event = require('../models/Event');
 const router = express.Router();
 
 // Create a new event
@@ -10,6 +10,7 @@ router.post('/events', async (req, res) => {
   const event = await Event.create({title, date, userId});
   res.status(201).json(event);
  } catch (error) {
+  console.log(error);
   res.status(500).json({error: 'Error creating event'});
  }
 });
@@ -22,6 +23,8 @@ router.get('/events/:userId', async (req, res) => {
   const events = await Event.findAll({where: {userId}});
   res.status(200).json(events);
  } catch (error) {
+  console.log(error);
+
   res.status(500).json({error: 'Error fetching events'});
  }
 });
@@ -43,6 +46,8 @@ router.put('/events/:id', async (req, res) => {
 
   res.status(200).json(event);
  } catch (error) {
+  console.log(error);
+
   res.status(500).json({error: 'Error updating event'});
  }
 });
@@ -60,6 +65,8 @@ router.delete('/events/:id', async (req, res) => {
   await event.destroy();
   res.status(200).json({message: 'Event deleted'});
  } catch (error) {
+  console.log(error);
+
   res.status(500).json({error: 'Error deleting event'});
  }
 });

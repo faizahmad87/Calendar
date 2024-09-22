@@ -29,32 +29,49 @@ function EditEvent() {
     title,
     date
    });
-   navigate('./calendar'); // Redirect to calendar after updating
+   navigate('/calendar'); // Redirect to calendar after updating
   } catch (error) {
    console.error('Error updating event', error);
   }
  };
 
  return (
-  <div>
-   <h2>Edit Event</h2>
-   <form onSubmit={handleSubmit}>
-    <input
-     type="text"
-     value={title}
-     onChange={e => setTitle(e.target.value)}
-     placeholder="Event Title"
-     required
-    />
-    <input
-     type="date"
-     value={date}
-     onChange={e => setDate(e.target.value)}
-     required
-    />
-    <button type="submit">Update Event</button>
-   </form>
-  </div>
+  <>
+   <div className="header">
+    <div>Edit Event</div>
+    <div>
+     <button
+      onClick={() => {
+       navigate(`/calendar`);
+      }}
+     >
+      View Events
+     </button>
+    </div>
+   </div>
+   <div className="main-container" style={{alignItems: 'center'}}>
+    <form onSubmit={handleSubmit} className="input-container">
+     <input
+      type="text"
+      value={title}
+      onChange={e => setTitle(e.target.value)}
+      placeholder="Event Title"
+      required
+      className="input-element"
+     />
+     <input
+      type="date"
+      value={date}
+      onChange={e => setDate(e.target.value)}
+      required
+      className="input-element"
+     />
+     <button type="submit" style={{padding: '12px'}}>
+      Update Event
+     </button>
+    </form>
+   </div>
+  </>
  );
 }
 

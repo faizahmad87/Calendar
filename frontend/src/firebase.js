@@ -1,20 +1,29 @@
 // Import the necessary Firebase functions
-import {initializeApp} from 'firebase/app';
+import {initializeApp, getApps} from 'firebase/app';
 import {getAuth} from 'firebase/auth';
 import {getFirestore} from 'firebase/firestore';
 
 // Your Firebase configuration object
 const firebaseConfig = {
- apiKey: 'your-api-key',
- authDomain: 'your-auth-domain',
- projectId: 'your-project-id',
- storageBucket: 'your-storage-bucket',
- messagingSenderId: 'your-messaging-sender-id',
- appId: 'your-app-id'
+ apiKey: 'AIzaSyA1zhvMr6Xm_9YpDx83lfCnAB1pDluG-lc',
+ authDomain: 'calendar-eae76.firebaseapp.com',
+ projectId: 'calendar-eae76',
+ storageBucket: 'calendar-eae76.appspot.com',
+ messagingSenderId: '882748295071',
+ appId: '1:882748295071:web:dd29ef0254f666a882dfaa',
+ measurementId: 'G-71EFPSQ795'
 };
 
 // Initialize Firebase app
-const app = initializeApp(firebaseConfig);
+// Check if Firebase has been initialized
+let app;
+if (!getApps().length) {
+ app = initializeApp(firebaseConfig);
+ console.log('Firebase Initialized:', app);
+} else {
+ app = getApps()[0];
+ console.log('Firebase already initialized');
+}
 
 // Initialize Firebase Auth and Firestore services
 const auth = getAuth(app);

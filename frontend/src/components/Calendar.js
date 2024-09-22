@@ -1,48 +1,108 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
-import {auth} from '../firebase';
+import {Link, useNavigate} from 'react-router-dom';
+import Calendar from 'react-calendar';
 
-function Calendar() {
+// import {auth} from '../firebase';
+
+function CalendarEvent() {
  const [events, setEvents] = useState([]);
  const [loading, setLoading] = useState(true);
+ const navigate = useNavigate();
+ const userId = localStorage.getItem('userID');
+ const [value, onChange] = useState(new Date());
+
+ const fetchEvents = async () => {
+  try {
+   //const user = auth.currentUser;
+   //if (user) {
+   const res = await axios.get(`http://localhost:5000/api/events/${userId}`);
+   setEvents(res.data);
+   setLoading(false);
+   //}
+  } catch (error) {
+   console.error('Error fetching events', error);
+   setLoading(false);
+  }
+ };
 
  useEffect(() => {
-  const fetchEvents = async () => {
-   try {
-    const user = auth.currentUser;
-    if (user) {
-     const res = await axios.get(
-      `http://localhost:5000/api/events/${user.uid}`
-     );
-     setEvents(res.data);
-     setLoading(false);
-    }
-   } catch (error) {
-    console.error('Error fetching events', error);
-    setLoading(false);
-   }
-  };
-
   fetchEvents();
  }, []);
 
- if (loading) return <p>Loading events...</p>;
+ // Function to delete an event by its ID
+ const handleDelete = async id => {
+  try {
+   await axios.delete(`http://localhost:5000/api/events/${id}`);
+   // Remove the event from the state after deletion
+   //setEvents(events.filter(event => event.id !== id));
+   fetchEvents();
+  } catch (error) {
+   console.error('Error deleting event:', error);
+  }
+ };
 
  return (
-  <div>
-   <h2>Your Events</h2>
-   <Link to="/create-event">Create New Event</Link>
-   <ul>
-    {events.map(event => (
-     <li key={event.id}>
-      {event.title} on {new Date(event.date).toDateString()}
-      <Link to={`/edit-event/${event.id}`}>Edit</Link>
-     </li>
-    ))}
-   </ul>
-  </div>
+  <>
+   <div className="header">
+    <div>Your Events</div>
+    <div>
+     <button
+      onClick={() => {
+       localStorage.removeItem('token');
+       navigate('/login');
+      }}
+     >
+      Log Out
+     </button>
+     <button
+      onClick={() => {
+       navigate(`/create-event`);
+      }}
+     >
+      Create New Event
+     </button>
+    </div>
+   </div>
+   {loading ? (
+    <p>Loading events...</p>
+   ) : (
+    <div className="main-container">
+     <div className="calendar">
+      <div className="list">
+       {events.map(event => (
+        <div key={event.id} className="list-item">
+         <b>{event.title}</b> on {new Date(event.date).toDateString()}
+         <button
+          style={{padding: '6px 8px'}}
+          onClick={() => {
+           navigate(`/edit-event/${event.id}`);
+          }}
+         >
+          Edit
+         </button>
+         <button
+          style={{padding: '6px 8px'}}
+          onClick={() => handleDelete(event.id)}
+         >
+          Delete
+         </button>
+        </div>
+       ))}
+      </div>
+      <div style={{width: '40%'}}>
+       {/* <Calendar
+        onChange={value => {
+         console.log(value);
+        }}
+        value={value}
+       /> */}
+      </div>
+     </div>
+    </div>
+   )}
+  </>
  );
 }
 
-export default Calendar;
+export default CalendarEvent;
