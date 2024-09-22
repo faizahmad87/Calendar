@@ -5,7 +5,6 @@ This is a full-stack Calendar application that allows users to create, view, edi
 ## Table of Contents
 
 - [Features](#features)
-- [Prerequisites](#prerequisites)
 - [Installation](#installation)
   - [Backend Setup](#backend-setup)
   - [Frontend Setup](#frontend-setup)
