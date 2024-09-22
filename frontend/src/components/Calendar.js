@@ -71,22 +71,37 @@ function CalendarEvent() {
      <div className="calendar">
       <div className="list">
        {events.map(event => (
-        <div key={event.id} className="list-item">
-         <b>{event.title}</b> on {new Date(event.date).toDateString()}
-         <button
-          style={{padding: '6px 8px'}}
-          onClick={() => {
-           navigate(`/edit-event/${event.id}`);
-          }}
-         >
-          Edit
-         </button>
-         <button
-          style={{padding: '6px 8px'}}
-          onClick={() => handleDelete(event.id)}
-         >
-          Delete
-         </button>
+        <div className="list-item">
+         <div key={event.id} className="item-title">
+          <b>{event.title}</b> on {new Date(event.date).toDateString()}
+          <button
+           style={{
+            padding: '0px',
+            display: 'flex',
+            alignItems: 'center',
+            paddingRight: '12px'
+           }}
+           onClick={() => {
+            navigate(`/edit-event/${event.id}`);
+           }}
+          >
+           Edit
+          </button>
+          <button
+           style={{
+            padding: '0px',
+            display: 'flex',
+            alignItems: 'center',
+            paddingRight: '12px'
+           }}
+           onClick={() => handleDelete(event.id)}
+          >
+           Delete
+          </button>
+         </div>
+         {event?.description && (
+          <div className="description">Description: {event?.description}</div>
+         )}
         </div>
        ))}
       </div>

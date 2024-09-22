@@ -15,11 +15,9 @@ sequelize
  .catch(err => console.error('Unable to connect to the database:', err));
 
 sequelize
- .sync({force: false}) // Use 'force: true' if you want to drop and recreate tables every time
- .then(() => {
-  console.log('Database synced');
- })
- .catch(err => console.log('Error syncing database:', err));
+ .sync({alter: true})
+ .then(() => console.log('Database synced'))
+ .catch(err => console.error('Error syncing database:', err));
 
 const express = require('express');
 const cors = require('cors');

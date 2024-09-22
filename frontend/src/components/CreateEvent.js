@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom';
 
 function CreateEvent() {
  const [title, setTitle] = useState('');
+ const [description, setDescription] = useState('');
  const [date, setDate] = useState('');
  const navigate = useNavigate();
 
@@ -17,6 +18,7 @@ function CreateEvent() {
    //if (user) {
    await axios.post('http://localhost:5000/api/events', {
     title,
+    description,
     date,
     userId: userID
    });
@@ -48,6 +50,14 @@ function CreateEvent() {
       value={title}
       onChange={e => setTitle(e.target.value)}
       placeholder="Event Title"
+      required
+      className="input-element"
+     />
+     <input
+      type="text"
+      value={description}
+      onChange={e => setDescription(e.target.value)}
+      placeholder="Event Description"
       required
       className="input-element"
      />

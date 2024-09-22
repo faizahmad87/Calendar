@@ -5,6 +5,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 function EditEvent() {
  const {id} = useParams(); // Event ID from URL
  const [title, setTitle] = useState('');
+ const [description, setDescription] = useState('');
  const [date, setDate] = useState('');
  const navigate = useNavigate();
  useEffect(() => {
@@ -13,6 +14,7 @@ function EditEvent() {
     const res = await axios.get(`http://localhost:5000/api/events/${id}`);
     const event = res.data;
     setTitle(event.title);
+    setDescription(event.description);
     setDate(event.date.split('T')[0]);
    } catch (error) {
     console.error('Error fetching event', error);
@@ -27,6 +29,7 @@ function EditEvent() {
   try {
    await axios.put(`http://localhost:5000/api/events/${id}`, {
     title,
+    description,
     date
    });
    navigate('/calendar'); // Redirect to calendar after updating
@@ -56,6 +59,14 @@ function EditEvent() {
       value={title}
       onChange={e => setTitle(e.target.value)}
       placeholder="Event Title"
+      required
+      className="input-element"
+     />
+     <input
+      type="text"
+      value={description}
+      onChange={e => setDescription(e.target.value)}
+      placeholder="Event Description"
       required
       className="input-element"
      />

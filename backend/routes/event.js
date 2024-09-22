@@ -4,10 +4,10 @@ const router = express.Router();
 
 // Create a new event
 router.post('/events', async (req, res) => {
- const {title, date, userId} = req.body;
+ const {title, description, date, userId} = req.body;
 
  try {
-  const event = await Event.create({title, date, userId});
+  const event = await Event.create({title, description, date, userId});
   res.status(201).json(event);
  } catch (error) {
   console.log(error);
@@ -32,7 +32,7 @@ router.get('/events/:userId', async (req, res) => {
 // Update an event
 router.put('/events/:id', async (req, res) => {
  const {id} = req.params;
- const {title, date} = req.body;
+ const {title, description, date} = req.body;
 
  try {
   const event = await Event.findByPk(id);
@@ -42,6 +42,7 @@ router.put('/events/:id', async (req, res) => {
 
   event.title = title;
   event.date = date;
+  event.description = description;
   await event.save();
 
   res.status(200).json(event);

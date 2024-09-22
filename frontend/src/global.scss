@@ -59,22 +59,31 @@ button {
 }
 
 .list-item {
- position: relative;
- padding-left: 30px; /* Space for the icon */
  display: flex;
- gap: 4px;
- align-items: center;
- font-size: 24px;
- b {
-  text-transform: capitalize;
+ flex-direction: column;
+ font-family: Lato;
+ gap: 0px;
+ .item-title {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 24px;
+  b {
+   text-transform: capitalize;
+  }
+ }
+ .description {
+  padding-left: 12px;
+  font-size: 16px;
  }
 }
-.list-item::before {
+.item-title ::before {
  content: '\2022'; /* Unicode for bullet point */
  font-size: 30px; /* Size of the icon */
  color: #b3005c; /* Custom color for the bullet/icon */
- //margin-right: 10px; /* Space between icon and text */
- display: inline-block;
+ margin-right: 8px; /* Space between icon and text */
+ display: inline;
 }
 
 .input-container {
